@@ -3,10 +3,10 @@ module github.com/dvonthenen/enterprise-conversation-plugins/plugins/historical-
 go 1.18
 
 require (
-	github.com/dvonthenen/enterprise-reference-implementation v0.1.2
-	github.com/dvonthenen/symbl-go-sdk v0.1.4
+	github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230209154641-ecb5d77ed313
+	github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230209154332-b0916120e2bf
 	github.com/neo4j/neo4j-go-driver/v5 v5.3.0
-	k8s.io/klog/v2 v2.80.1
+	k8s.io/klog/v2 v2.90.0
 )
 
 require (

@@ -8,9 +8,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	commoninterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/interfaces"
 	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
-	symblinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1/interfaces"
+	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
+	sdkinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1/interfaces"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	klog "k8s.io/klog/v2"
 
@@ -21,7 +21,7 @@ func NewHandler(options HandlerOptions) *Handler {
 	handler := Handler{
 		session:     options.Session,
 		symblClient: options.SymblClient,
-		cache:       NewMessageCache(),
+		cache:       utils.NewMessageCache(),
 	}
 	return &handler
 }
@@ -31,30 +31,30 @@ func (h *Handler) SetClientPublisher(mp *middlewareinterfaces.MessagePublisher) 
 	h.msgPublisher = mp
 }
 
-func (h *Handler) InitializedConversation(im *symblinterfaces.InitializationMessage) error {
+func (h *Handler) InitializedConversation(im *sdkinterfaces.InitializationMessage) error {
 	h.conversationID = im.Message.Data.ConversationID
 	klog.V(2).Infof("conversationID: %s\n", h.conversationID)
 	return nil
 }
 
-func (h *Handler) RecognitionResultMessage(rr *symblinterfaces.RecognitionResult) error {
+func (h *Handler) RecognitionResultMessage(rr *sdkinterfaces.RecognitionResult) error {
 	// No implementation required. Return Succeess!
 	return nil
 }
 
-func (h *Handler) MessageResponseMessage(mr *symblinterfaces.MessageResponse) error {
+func (h *Handler) MessageResponseMessage(mr *sdkinterfaces.MessageResponse) error {
 	for _, msg := range mr.Messages {
 		h.cache.Push(msg.ID, msg.Payload.Content)
 	}
 	return nil
 }
 
-func (h *Handler) InsightResponseMessage(ir *symblinterfaces.InsightResponse) error {
+func (h *Handler) InsightResponseMessage(ir *sdkinterfaces.InsightResponse) error {
 	// No implementation required. Return Succeess!
 	return nil
 }
 
-func (h *Handler) TopicResponseMessage(tr *symblinterfaces.TopicResponse) error {
+func (h *Handler) TopicResponseMessage(tr *sdkinterfaces.TopicResponse) error {
 	ctx := context.Background()
 
 	for _, curTopic := range tr.Topics {
@@ -64,7 +64,7 @@ func (h *Handler) TopicResponseMessage(tr *symblinterfaces.TopicResponse) error 
 
 		// get past instances
 		_, err := (*h.session).ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-			myQuery := commoninterfaces.ReplaceIndexes(`
+			myQuery := utils.ReplaceIndexes(`
 				MATCH (t:Topic)-[x:TOPIC_MESSAGE_REF]-(m:Message)-[y:SPOKE]-(u:User)
 				WHERE x.#conversation_index# <> $conversation_id AND y.#conversation_index# <> $conversation_id AND t.value = $topic_phrases
 				RETURN t, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
@@ -83,7 +83,11 @@ func (h *Handler) TopicResponseMessage(tr *symblinterfaces.TopicResponse) error 
 					klog.V(2).Infof("----------------------------------------\n")
 
 					msg = &interfaces.AppSpecificHistorical{
-						Type: symblinterfaces.MessageTypeUserDefined,
+						Type: sdkinterfaces.MessageTypeUserDefined,
+						Historical: interfaces.Historical{
+							Type: interfaces.AppSpecificMessageTypeHistorical,
+							Data: make([]interfaces.Data, 0),
+						},
 					}
 					atLeastOnce = true
 				}
@@ -112,7 +116,7 @@ func (h *Handler) TopicResponseMessage(tr *symblinterfaces.TopicResponse) error 
 					content += contentTmp
 				}
 
-				msg.Data = append(msg.Data, &interfaces.Data{
+				msg.Historical.Data = append(msg.Historical.Data, interfaces.Data{
 					Type: interfaces.UserMessageTypeEntityAssociation,
 					Author: interfaces.Author{
 						Name:  user.Props["name"].(string),
@@ -159,7 +163,7 @@ func (h *Handler) TopicResponseMessage(tr *symblinterfaces.TopicResponse) error 
 	return nil
 }
 
-func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) error {
+func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) error {
 	ctx := context.Background()
 
 	for _, curTracker := range tr.Trackers {
@@ -170,7 +174,7 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 
 		// get past messages
 		_, err := (*h.session).ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-			myQuery := commoninterfaces.ReplaceIndexes(`
+			myQuery := utils.ReplaceIndexes(`
 				MATCH (t:Tracker)-[x:TRACKER_MESSAGE_REF]-(m:Message)-[y:SPOKE]-(u:User)
 				WHERE x.#conversation_index# <> $conversation_id AND y.#conversation_index# <> $conversation_id AND t.name = $tracker_name
 				RETURN t, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
@@ -189,7 +193,11 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 					klog.V(2).Infof("----------------------------------------\n")
 
 					msg = &interfaces.AppSpecificHistorical{
-						Type: symblinterfaces.MessageTypeUserDefined,
+						Type: sdkinterfaces.MessageTypeUserDefined,
+						Historical: interfaces.Historical{
+							Type: interfaces.AppSpecificMessageTypeHistorical,
+							Data: make([]interfaces.Data, 0),
+						},
 					}
 					atLeastOnceMessage = true
 				}
@@ -205,7 +213,7 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 
 				for _, match := range curTracker.Matches {
 					for _, refs := range match.MessageRefs {
-						msg.Data = append(msg.Data, &interfaces.Data{
+						msg.Historical.Data = append(msg.Historical.Data, interfaces.Data{
 							Type: interfaces.UserMessageTypeTrackerAssociation,
 							Author: interfaces.Author{
 								Name:  user.Props["name"].(string),
@@ -236,7 +244,7 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 
 		// get past insights
 		_, err = (*h.session).ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-			myQuery := commoninterfaces.ReplaceIndexes(`
+			myQuery := utils.ReplaceIndexes(`
 				MATCH (t:Tracker)-[x:TRACKER_INSIGHT_REF]-(i:Insight)-[y:SPOKE]-(u:User)
 				WHERE x.#conversation_index# <> $conversation_id AND y.#conversation_index# <> $conversation_id AND t.name = $tracker_name
 				RETURN t, x, i, y, u ORDER BY x.created DESC LIMIT 5`)
@@ -256,7 +264,11 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 					klog.V(2).Infof("----------------------------------------\n")
 
 					msg = &interfaces.AppSpecificHistorical{
-						Type: symblinterfaces.MessageTypeUserDefined,
+						Type: sdkinterfaces.MessageTypeUserDefined,
+						Historical: interfaces.Historical{
+							Type: interfaces.AppSpecificMessageTypeHistorical,
+							Data: make([]interfaces.Data, 0),
+						},
 					}
 					atLeastOnceInsight = true
 				}
@@ -274,7 +286,7 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 					for _, refs := range match.InsightRefs {
 						// send a message per match
 
-						msg.Data = append(msg.Data, &interfaces.Data{
+						msg.Historical.Data = append(msg.Historical.Data, interfaces.Data{
 							Type: interfaces.UserMessageTypeTrackerAssociation,
 							Author: interfaces.Author{
 								Name:  user.Props["name"].(string),
@@ -323,7 +335,7 @@ func (h *Handler) TrackerResponseMessage(tr *symblinterfaces.TrackerResponse) er
 	return nil
 }
 
-func (h *Handler) EntityResponseMessage(er *symblinterfaces.EntityResponse) error {
+func (h *Handler) EntityResponseMessage(er *sdkinterfaces.EntityResponse) error {
 	ctx := context.Background()
 
 	for _, entity := range er.Entities {
@@ -333,7 +345,7 @@ func (h *Handler) EntityResponseMessage(er *symblinterfaces.EntityResponse) erro
 
 		// get past instances
 		_, err := (*h.session).ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-			myQuery := commoninterfaces.ReplaceIndexes(`
+			myQuery := utils.ReplaceIndexes(`
 				MATCH (e:Entity)-[x:ENTITY_MESSAGE_REF]-(m:Message)-[y:SPOKE]-(u:User)
 				WHERE x.#conversation_index# <> $conversation_id AND y.#conversation_index# <> $conversation_id AND e.type = $entity_type AND e.subType = $entity_subtype
 				RETURN e, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
@@ -353,7 +365,11 @@ func (h *Handler) EntityResponseMessage(er *symblinterfaces.EntityResponse) erro
 					klog.V(2).Infof("----------------------------------------\n")
 
 					msg = &interfaces.AppSpecificHistorical{
-						Type: symblinterfaces.MessageTypeUserDefined,
+						Type: sdkinterfaces.MessageTypeUserDefined,
+						Historical: interfaces.Historical{
+							Type: interfaces.AppSpecificMessageTypeHistorical,
+							Data: make([]interfaces.Data, 0),
+						},
 					}
 					atLeastOnce = true
 				}
@@ -369,7 +385,7 @@ func (h *Handler) EntityResponseMessage(er *symblinterfaces.EntityResponse) erro
 
 				for _, match := range entity.Matches {
 					for _, refs := range match.MessageRefs {
-						msg.Data = append(msg.Data, &interfaces.Data{
+						msg.Historical.Data = append(msg.Historical.Data, interfaces.Data{
 							Type: interfaces.UserMessageTypeEntityAssociation,
 							Author: interfaces.Author{
 								Name:  user.Props["name"].(string),
@@ -418,7 +434,7 @@ func (h *Handler) EntityResponseMessage(er *symblinterfaces.EntityResponse) erro
 	return nil
 }
 
-func (h *Handler) TeardownConversation(tm *symblinterfaces.TeardownMessage) error {
+func (h *Handler) TeardownConversation(tm *sdkinterfaces.TeardownMessage) error {
 	// No implementation required. Return Succeess!
 	return nil
 }
@@ -435,7 +451,7 @@ func (h *Handler) UnhandledMessage(byMsg []byte) error {
 	return ErrUnhandledMessage
 }
 
-func convertRootWordToString(words []symblinterfaces.RootWord) string {
+func convertRootWordToString(words []sdkinterfaces.RootWord) string {
 	tmp := ""
 	for _, word := range words {
 		if len(tmp) > 0 {

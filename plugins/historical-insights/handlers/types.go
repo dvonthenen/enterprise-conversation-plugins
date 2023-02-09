@@ -4,27 +4,12 @@
 package handlers
 
 import (
-	"container/list"
-	"sync"
-
 	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
+
+	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
 )
-
-/*
-	MessageCache
-*/
-type Message struct {
-	ID  string
-	Msg string
-}
-
-type MessageCache struct {
-	rotatingWindowOfMsg *list.List
-	mapIdToMsg          map[string]string
-	mu                  sync.Mutex
-}
 
 /*
 	Handler for messages
@@ -37,7 +22,7 @@ type HandlerOptions struct {
 type Handler struct {
 	// properties
 	conversationID string
-	cache          *MessageCache
+	cache          *utils.MessageCache
 
 	// housekeeping
 	session      *neo4j.SessionWithContext
