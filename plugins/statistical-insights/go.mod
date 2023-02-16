@@ -1,4 +1,4 @@
-module github.com/dvonthenen/enterprise-conversation-plugins/plugins/historical-insights
+module github.com/dvonthenen/enterprise-conversation-plugins/plugins/statistical-insights
 
 go 1.18
 

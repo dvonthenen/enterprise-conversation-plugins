@@ -13,7 +13,7 @@ import (
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	klog "k8s.io/klog/v2"
 
-	handlers "github.com/dvonthenen/enterprise-conversation-plugins/plugins/historical-insights/handlers"
+	handlers "github.com/dvonthenen/enterprise-conversation-plugins/plugins/statistical-insights/handlers"
 )
 
 func New(options ServerOptions) (*Server, error) {
