@@ -4,12 +4,16 @@ github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.2023020915464
 github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230209154641-ecb5d77ed313/go.mod h1:iKZT7F/JfOT6r8Mg1dCOb3mkilinFMI+VVAbimgKGSM=
 github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230210233227-5c7b16732ab3 h1:ZT2kprM+lHJIxNFDwQZYern7QYU0Tkk6PihVZpzQW0c=
 github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230210233227-5c7b16732ab3/go.mod h1:iKZT7F/JfOT6r8Mg1dCOb3mkilinFMI+VVAbimgKGSM=
+github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230301020603-1006ee5c66bb h1:7Kgtaw81GrRoq4qdjMUFJlcGnvx0ks+FOM9vI6hrS/I=
+github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230301020603-1006ee5c66bb/go.mod h1:HOXOA+EjyYNeuKiTR9TiNye6UqavxFDA4O4lEW260jM=
 github.com/dvonthenen/rabbitmq-manager v0.1.1 h1:I0Sl2DA2rgZBPqzXG+/yD5+/oadKf0xjahDdwo71HEY=
 github.com/dvonthenen/rabbitmq-manager v0.1.1/go.mod h1:6gbBj4toScVEa0drbEU+7yajmCXMfqfEwMsaXQ0vWvk=
 github.com/dvonthenen/sse/v2 v2.0.0-20221222171132-1daa5f8b774c h1:eu91E8j21DyoIXJyC9dNC5hSK2yrkmPzvh0t6zwQts0=
 github.com/dvonthenen/sse/v2 v2.0.0-20221222171132-1daa5f8b774c/go.mod h1:Igau6Whc+F17QUgML1fYe1VPZzTV6EMCnYktEmkNJ7I=
 github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230209154332-b0916120e2bf h1:r2W6NOAXxfAE6QWyAUOhqacbSupRJdTavJRPk5nVUXc=
 github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230209154332-b0916120e2bf/go.mod h1:W689HEqgj62eZMeGmTbsWgpxEgmR2nFs7v8XO6uVIhY=
+github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230301015713-52a9b4498249 h1:g6ZT49VAb5sZgqxENCHLId8tsOuiMsuJnrRiB2zqptI=
+github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230301015713-52a9b4498249/go.mod h1:W689HEqgj62eZMeGmTbsWgpxEgmR2nFs7v8XO6uVIhY=
 github.com/dvonthenen/websocket v1.5.1-0.20221123154619-09865dbf1be2 h1:rsU8o6R7JTsP1c8WnXQhbaGRITJgL+SeDgc6zsFTfSU=
 github.com/dvonthenen/websocket v1.5.1-0.20221123154619-09865dbf1be2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/dvonthenen/websocketproxy v0.0.0-20230107052039-7dc48def251e h1:jx2Ir+dEAJtMRScWR16WdkcgYTYEzsqg+kzv/yiUQKI=
@@ -24,6 +28,8 @@ github.com/go-playground/universal-translator v0.18.0 h1:82dyy6p4OuJq4/CByFNOn/j
 github.com/go-playground/universal-translator v0.18.0/go.mod h1:UvRDBj+xPUEGrFYl+lu/H90nyDXpg0fqeB/AQUGNTVA=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/gordonklaus/portaudio v0.0.0-20220320131553-cc649ad523c1 h1:FgUJ91JoMbS5qWXdIpnHta1hLtw1X8n2ek5JRED3R1I=
+github.com/gordonklaus/portaudio v0.0.0-20220320131553-cc649ad523c1/go.mod h1:HfYnZi/ARQKG0dwH5HNDmPCHdLiFiBf+SI7DbhW7et4=
 github.com/hokaccha/go-prettyjson v0.0.0-20211117102719-0474bc63780f h1:7LYC+Yfkj3CTRcShK0KOL/w6iTiKyqqBA9a41Wnggw8=
 github.com/hokaccha/go-prettyjson v0.0.0-20211117102719-0474bc63780f/go.mod h1:pFlLw2CfqZiIBOx6BuCeRLCrfxBJipTY0nIOF/VbGcI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
