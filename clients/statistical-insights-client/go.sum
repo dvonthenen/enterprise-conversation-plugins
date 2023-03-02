@@ -1,9 +1,9 @@
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/dvonthenen/symbl-go-sdk v0.1.4 h1:lJP6CTcqo4cWqkmK6D57fjbVXur87wbTJAjPHpZbISE=
-github.com/dvonthenen/symbl-go-sdk v0.1.4/go.mod h1:Dw2W6FSawCqR01ebN4oJ3Y+/N8Yer88hBFkxrP9aZyw=
-github.com/dvonthenen/websocket v1.5.1-0.20221123154619-09865dbf1be2 h1:rsU8o6R7JTsP1c8WnXQhbaGRITJgL+SeDgc6zsFTfSU=
-github.com/dvonthenen/websocket v1.5.1-0.20221123154619-09865dbf1be2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
+github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230302195324-986cb6f026d8 h1:V8VQUssCzql3bKjMZss56BTZvcDDaYbZbpjYiATwOog=
+github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230302195324-986cb6f026d8/go.mod h1:6f4ZvbSzZiqv7CluCimR2Sf+A9xFUSWLNqyrVTu42QA=
+github.com/dvonthenen/websocket v1.5.1-dyv.2 h1:OXlWJJkeHt8k4+MEI0Y8SQjY2ihHYD2z/tI7sZZfsnA=
+github.com/dvonthenen/websocket v1.5.1-dyv.2/go.mod h1:q2GbopbpFJvBP4iqVvqwwahVmvu2HnCfdqCWDoQVKMM=
 github.com/fatih/color v1.13.0 h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w=
 github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYFFOfk=
 github.com/go-logr/logr v1.2.0 h1:QK40JKJyMdUDz+h+xvCsru/bJhvG0UxvePV0ufL/AcE=
@@ -43,5 +43,5 @@ gopkg.in/go-playground/validator.v9 v9.31.0 h1:bmXmP2RSNtFES+bn4uYuHT7iJFJv7Vj+a
 gopkg.in/go-playground/validator.v9 v9.31.0/go.mod h1:+c9/zcJMFNgbLvly1L1V+PpxWdVbfP1avr/N00E2vyQ=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c h1:dUUwHk2QECo/6vqA44rthZ8ie2QXMNeKRTHCNY2nXvo=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
-k8s.io/klog/v2 v2.80.1 h1:atnLQ121W371wYYFawwYx1aEY2eUfs4l3J72wtgAwV4=
-k8s.io/klog/v2 v2.80.1/go.mod h1:y1WjHnz7Dj687irZUWR/WLkLc5N1YHtjLdmgWjndZn0=
+k8s.io/klog/v2 v2.90.0 h1:VkTxIV/FjRXn1fgNNcKGM8cfmL1Z33ZjXRTVxKCoF5M=
+k8s.io/klog/v2 v2.90.0/go.mod h1:y1WjHnz7Dj687irZUWR/WLkLc5N1YHtjLdmgWjndZn0=
