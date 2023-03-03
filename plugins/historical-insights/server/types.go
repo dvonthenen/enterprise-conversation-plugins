@@ -4,7 +4,7 @@
 package server
 
 import (
-	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer"
+	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )

@@ -7,8 +7,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 
-	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
+	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
 	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
 	sdkinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1/interfaces"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
@@ -26,7 +27,7 @@ func NewHandler(options HandlerOptions) *Handler {
 	return &handler
 }
 
-func (h *Handler) SetClientPublisher(mp *middlewareinterfaces.MessagePublisher) {
+func (h *Handler) SetClientPublisher(mp *interfacessdk.MessagePublisher) {
 	klog.V(4).Infof("SetClientPublisher called...\n")
 	h.msgPublisher = mp
 }
@@ -70,7 +71,7 @@ func (h *Handler) TopicResponseMessage(tr *sdkinterfaces.TopicResponse) error {
 				RETURN t, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
 			result, err := tx.Run(ctx, myQuery, map[string]any{
 				"conversation_id": h.conversationID,
-				"topic_phrases":   curTopic.Phrases,
+				"topic_phrases":   strings.ToLower(curTopic.Phrases),
 			})
 			if err != nil {
 				return nil, err
@@ -88,15 +89,15 @@ func (h *Handler) TopicResponseMessage(tr *sdkinterfaces.TopicResponse) error {
 							Type: interfaces.AppSpecificMessageTypeHistorical,
 						},
 						Historical: interfaces.Data{
-							Type:        interfaces.UserAssociationTypeTopic,
-							Correlation: curTopic.Phrases,
+							Type:        interfaces.UserHistoricalTypeTopic,
+							Correlation: strings.ToLower(curTopic.Phrases),
 							Current:     make([]interfaces.Insight, 0),
 							Previous:    make([]interfaces.Insight, 0),
 						},
 					}
 
 					msg.Historical.Current = append(msg.Historical.Current, interfaces.Insight{
-						Correlation: curTopic.Phrases,
+						Correlation: strings.ToLower(curTopic.Phrases),
 						Messages:    h.convertMessageReferenceToSlice(curTopic.MessageReferences),
 					})
 
@@ -114,7 +115,7 @@ func (h *Handler) TopicResponseMessage(tr *sdkinterfaces.TopicResponse) error {
 				klog.V(2).Infof("Corresponding sentence: %s\n", message.Props["content"].(string))
 
 				msg.Historical.Previous = append(msg.Historical.Previous, interfaces.Insight{
-					Correlation: relationship.Props["value"].(string),
+					Correlation: strings.ToLower(relationship.Props["value"].(string)),
 					Messages: []interfaces.Message{
 						interfaces.Message{
 							ID:   message.Props["messageId"].(string),
@@ -178,7 +179,7 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 				RETURN t, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
 			result, err := tx.Run(ctx, myQuery, map[string]any{
 				"conversation_id": h.conversationID,
-				"tracker_name":    curTracker.Name,
+				"tracker_name":    strings.ToLower(curTracker.Name),
 			})
 			if err != nil {
 				return nil, err
@@ -196,8 +197,8 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 							Type: interfaces.AppSpecificMessageTypeHistorical,
 						},
 						Historical: interfaces.Data{
-							Type:        interfaces.UserAssociationTypeTracker,
-							Correlation: curTracker.Name,
+							Type:        interfaces.UserHistoricalTypeTracker,
+							Correlation: strings.ToLower(curTracker.Name),
 							Current:     make([]interfaces.Insight, 0),
 							Previous:    make([]interfaces.Insight, 0),
 						},
@@ -217,14 +218,14 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 				for _, match := range curTracker.Matches {
 					if !addCurrentMessageAlready {
 						msg.Historical.Current = append(msg.Historical.Current, interfaces.Insight{
-							Correlation: match.Value,
+							Correlation: strings.ToLower(match.Value),
 							Messages:    h.convertMessageRefsToSlice(match.MessageRefs),
 						})
 						addCurrentMessageAlready = true
 					}
 
 					msg.Historical.Previous = append(msg.Historical.Previous, interfaces.Insight{
-						Correlation: relationship.Props["value"].(string),
+						Correlation: strings.ToLower(relationship.Props["value"].(string)),
 						Messages: []interfaces.Message{
 							interfaces.Message{
 								ID:   message.Props["messageId"].(string),
@@ -259,7 +260,7 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 				RETURN t, x, i, y, u ORDER BY x.created DESC LIMIT 5`)
 			result, err := tx.Run(ctx, myQuery, map[string]any{
 				"conversation_id": h.conversationID,
-				"tracker_name":    curTracker.Name,
+				"tracker_name":    strings.ToLower(curTracker.Name),
 			})
 			if err != nil {
 				return nil, err
@@ -278,8 +279,8 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 							Type: interfaces.AppSpecificMessageTypeHistorical,
 						},
 						Historical: interfaces.Data{
-							Type:        interfaces.UserAssociationTypeTracker,
-							Correlation: curTracker.Name,
+							Type:        interfaces.UserHistoricalTypeTracker,
+							Correlation: strings.ToLower(curTracker.Name),
 							Current:     make([]interfaces.Insight, 0),
 							Previous:    make([]interfaces.Insight, 0),
 						},
@@ -299,14 +300,14 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 				for _, match := range curTracker.Matches {
 					if !addCurrentMessageAlready {
 						msg.Historical.Current = append(msg.Historical.Current, interfaces.Insight{
-							Correlation: match.Value,
+							Correlation: strings.ToLower(match.Value),
 							Messages:    h.convertInsightRefsToSlice(match.InsightRefs),
 						})
 						addCurrentMessageAlready = true
 					}
 
 					msg.Historical.Previous = append(msg.Historical.Previous, interfaces.Insight{
-						Correlation: relationship.Props["value"].(string),
+						Correlation: strings.ToLower(relationship.Props["value"].(string)),
 						Messages: []interfaces.Message{
 							interfaces.Message{
 								ID:   insight.Props["insightId"].(string),
@@ -371,10 +372,10 @@ func (h *Handler) EntityResponseMessage(er *sdkinterfaces.EntityResponse) error 
 				RETURN e, x, m, y, u ORDER BY x.created DESC LIMIT 5`)
 				result, err := tx.Run(ctx, myQuery, map[string]any{
 					"conversation_id": h.conversationID,
-					"entity_category": entity.Category,
-					"entity_type":     entity.Type,
-					"entity_subtype":  entity.SubType,
-					"entity_value":    match.DetectedValue,
+					"entity_category": strings.ToLower(entity.Category),
+					"entity_type":     strings.ToLower(entity.Type),
+					"entity_subtype":  strings.ToLower(entity.SubType),
+					"entity_value":    strings.ToLower(match.DetectedValue),
 				})
 				if err != nil {
 					return nil, err
@@ -392,8 +393,8 @@ func (h *Handler) EntityResponseMessage(er *sdkinterfaces.EntityResponse) error 
 								Type: interfaces.AppSpecificMessageTypeHistorical,
 							},
 							Historical: interfaces.Data{
-								Type:        interfaces.UserAssociationTypeEntity,
-								Correlation: fmt.Sprintf("%s/%s/%s/%s", entity.Category, entity.Type, entity.SubType, match.DetectedValue),
+								Type:        interfaces.UserHistoricalTypeEntity,
+								Correlation: fmt.Sprintf("%s/%s/%s/%s", strings.ToLower(entity.Category), strings.ToLower(entity.Type), strings.ToLower(entity.SubType), strings.ToLower(match.DetectedValue)),
 								Current:     make([]interfaces.Insight, 0),
 								Previous:    make([]interfaces.Insight, 0),
 							},
@@ -413,14 +414,14 @@ func (h *Handler) EntityResponseMessage(er *sdkinterfaces.EntityResponse) error 
 					for _, match := range entity.Matches {
 						if !addCurrentMessageAlready {
 							msg.Historical.Current = append(msg.Historical.Current, interfaces.Insight{
-								Correlation: match.DetectedValue,
+								Correlation: strings.ToLower(match.DetectedValue),
 								Messages:    h.convertMessageRefsToSlice(match.MessageRefs),
 							})
 							addCurrentMessageAlready = true
 						}
 
 						msg.Historical.Previous = append(msg.Historical.Previous, interfaces.Insight{
-							Correlation: relationship.Props["value"].(string),
+							Correlation: strings.ToLower(relationship.Props["value"].(string)),
 							Messages: []interfaces.Message{
 								interfaces.Message{
 									ID:   message.Props["messageId"].(string),

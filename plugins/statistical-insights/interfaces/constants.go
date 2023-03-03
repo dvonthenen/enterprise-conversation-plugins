@@ -8,9 +8,9 @@ const (
 	AppSpecificMessageTypeStatistical string = "statistical"
 
 	// user/app level statistical type
-	UserStatisticalTypeTopic   string = "topic_statistical"
-	UserStatisticalTypeTracker string = "tracker_statistical"
-	UserStatisticalTypeEntity  string = "entity_statistical"
+	UserStatisticalTypeTopic   string = "statistical_topic"
+	UserStatisticalTypeTracker string = "statistical_tracker"
+	UserStatisticalTypeEntity  string = "statistical_entity"
 
 	// app specific message type
 	MessageNotFound string = "**MESSAGE NOT FOUND**"

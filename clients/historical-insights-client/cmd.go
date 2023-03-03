@@ -8,22 +8,35 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
-	streaming "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1"
+	// sse "github.com/r3labs/sse/v2"
+	// streaming "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1"
 	microphone "github.com/dvonthenen/symbl-go-sdk/pkg/audio/microphone"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
-	// sse "github.com/r3labs/sse/v2"
+	interfaces "github.com/dvonthenen/symbl-go-sdk/pkg/client/interfaces"
+
+	handler "github.com/dvonthenen/enterprise-conversation-plugins/clients/historical-insights-client/handler"
 )
 
+type HeadersContext struct{}
+
 func main() {
+	// init
 	symbl.Init(symbl.SybmlInit{
-		LogLevel: symbl.LogLevelStandard, // LogLevelStandard / LogLevelFull
+		LogLevel: symbl.LogLevelStandard, // LogLevelStandard / LogLevelFull / LogLevelTrace
 	})
 
 	ctx := context.Background()
+
+	// custom headers to enable options
+	headers := http.Header{}
+	headers.Add("X-ERI-TRANSCRIPTION", "true")
+	headers.Add("X-ERI-MESSAGING", "true")
+	ctx = interfaces.WithCustomHeaders(ctx, headers)
 
 	// create a new websocket/streaming client
 	cfg := symbl.GetDefaultConfig()
@@ -36,12 +49,15 @@ func main() {
 		if you wanted to something more meaningful with the output besides just print to the console,
 		you would create your own implementation of a message router instead of using the default one
 	*/
-	router := streaming.NewDefaultMessageRouter()
+	// router := streaming.NewDefaultMessageRouter()
+	router := handler.NewMyMessageRouter()
 
 	options := symbl.StreamingOptions{
-		SymblConfig:  cfg,
-		ProxyAddress: "127.0.0.1",
-		Callback:     router,
+		SymblConfig:     cfg,
+		SymblEndpoint:   "127.0.0.1",
+		RedirectService: true,
+		SkipServerAuth:  true,
+		Callback:        router,
 	}
 
 	client, err := symbl.NewStreamClient(ctx, options)

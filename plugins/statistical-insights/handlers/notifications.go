@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strings"
 
-	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
+	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
 	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
 	sdkinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1/interfaces"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
@@ -27,7 +27,7 @@ func NewHandler(options HandlerOptions) *Handler {
 	return &handler
 }
 
-func (h *Handler) SetClientPublisher(mp *middlewareinterfaces.MessagePublisher) {
+func (h *Handler) SetClientPublisher(mp *interfacessdk.MessagePublisher) {
 	klog.V(4).Infof("SetClientPublisher called...\n")
 	h.msgPublisher = mp
 }
@@ -97,7 +97,7 @@ func (h *Handler) TopicResponseMessage(tr *sdkinterfaces.TopicResponse) error {
 		}
 
 		msg.Statistical.Insights = append(msg.Statistical.Insights, interfaces.Insight{
-			Correlation: curTopic.Phrases,
+			Correlation: strings.ToLower(curTopic.Phrases),
 			Messages:    h.convertMessageReferenceToSlice(curTopic.MessageReferences),
 		})
 
@@ -158,7 +158,7 @@ func (h *Handler) TrackerResponseMessage(tr *sdkinterfaces.TrackerResponse) erro
 
 		for _, match := range curTracker.Matches {
 			msg.Statistical.Insights = append(msg.Statistical.Insights, interfaces.Insight{
-				Correlation: match.Value,
+				Correlation: strings.ToLower(match.Value),
 				Messages:    h.convertMessageAndInsightRefsToSlice(match.MessageRefs, match.InsightRefs),
 			})
 		}
@@ -220,7 +220,7 @@ func (h *Handler) EntityResponseMessage(er *sdkinterfaces.EntityResponse) error 
 			}
 
 			msg.Statistical.Insights = append(msg.Statistical.Insights, interfaces.Insight{
-				Correlation: fmt.Sprintf("%s/%s/%s/%s", curEntity.Category, curEntity.Type, curEntity.SubType, curMatch.DetectedValue),
+				Correlation: fmt.Sprintf("%s/%s/%s/%s", strings.ToLower(curEntity.Category), strings.ToLower(curEntity.Type), strings.ToLower(curEntity.SubType), strings.ToLower(curMatch.DetectedValue)),
 				Messages:    h.convertMessageRefsToSlice(curMatch.MessageRefs),
 			})
 
@@ -404,7 +404,7 @@ func (h *Handler) trackerStats(curTracker *sdkinterfaces.Tracker, length Statist
 		myQuery := utils.ReplaceIndexes(query)
 		result, err := tx.Run(ctx, myQuery, map[string]any{
 			"conversation_id": h.conversationID,
-			"tracker_name":    curTracker.Name,
+			"tracker_name":    strings.ToLower(curTracker.Name),
 		})
 		if err != nil {
 			return nil, err
@@ -435,9 +435,9 @@ func (h *Handler) entityStats(entity *sdkinterfaces.Entity, match *sdkinterfaces
 		myQuery := utils.ReplaceIndexes(query)
 		result, err := tx.Run(ctx, myQuery, map[string]any{
 			"conversation_id": h.conversationID,
-			"entity_category": entity.Category,
-			"entity_type":     entity.Type,
-			"entity_subtype":  entity.SubType,
+			"entity_category": strings.ToLower(entity.Category),
+			"entity_type":     strings.ToLower(entity.Type),
+			"entity_subtype":  strings.ToLower(entity.SubType),
 			"entity_value":    strings.ToLower(match.DetectedValue),
 		})
 		if err != nil {
