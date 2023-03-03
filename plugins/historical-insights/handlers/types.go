@@ -4,7 +4,7 @@
 package handlers
 
 import (
-	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
+	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
 	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
@@ -26,5 +26,5 @@ type Handler struct {
 	// housekeeping
 	session      *neo4j.SessionWithContext
 	symblClient  *symbl.RestClient
-	msgPublisher *middlewareinterfaces.MessagePublisher
+	msgPublisher *interfacessdk.MessagePublisher
 }

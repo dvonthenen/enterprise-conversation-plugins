@@ -7,8 +7,8 @@ import (
 	"context"
 	"os"
 
-	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer"
-	middlewareinterfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-analyzer/interfaces"
+	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk"
+	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	klog "k8s.io/klog/v2"
@@ -221,7 +221,7 @@ func (s *Server) RebuildMiddlewareAnalyzer() error {
 	})
 
 	// create middleware
-	var callback middlewareinterfaces.InsightCallback
+	var callback interfacessdk.InsightCallback
 	callback = messageHandler
 
 	middlewareAnalyzer, err := middlewaresdk.NewMiddlewareAnalyzer(middlewaresdk.MiddlewareAnalyzerOption{

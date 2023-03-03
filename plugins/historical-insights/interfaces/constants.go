@@ -7,10 +7,10 @@ const (
 	// app specific message type
 	AppSpecificMessageTypeHistorical string = "historical"
 
-	// user/app level association type
-	UserAssociationTypeTopic   string = "topic_association"
-	UserAssociationTypeTracker string = "tracker_association"
-	UserAssociationTypeEntity  string = "entity_association"
+	// user/app level historical type
+	UserHistoricalTypeTopic   string = "historical_topic"
+	UserHistoricalTypeTracker string = "historical_tracker"
+	UserHistoricalTypeEntity  string = "historical_entity"
 
 	// app specific message type
 	MessageNotFound string = "**MESSAGE NOT FOUND**"

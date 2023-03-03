@@ -3,8 +3,8 @@ module github.com/dvonthenen/enterprise-conversation-plugins/plugins/statistical
 go 1.18
 
 require (
-	github.com/dvonthenen/enterprise-reference-implementation v0.1.4-0.20230302201030-20ac39f813a0
-	github.com/dvonthenen/symbl-go-sdk v0.1.5-0.20230302195324-986cb6f026d8
+	github.com/dvonthenen/enterprise-reference-implementation v0.1.6
+	github.com/dvonthenen/symbl-go-sdk v0.1.5
 	github.com/neo4j/neo4j-go-driver/v5 v5.3.0
 	k8s.io/klog/v2 v2.90.0
 )
