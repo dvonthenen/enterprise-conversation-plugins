@@ -28,8 +28,8 @@ This is a high-level block diagram for what the architecture looks like...
 
 Middleware Plugins Available:
 
-- the [Historical Insights Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical-insights) which triggers an Application Specific Message of the last 5 mentions of a Topic, Tracker, Entity, etc
-- the [Statistical Insights Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical-insights) which provides the number of times a topic, Tracker, Entity, etc has been mentioned in the past 30 mins, 1 hour, 4 hours, 1 day, 2 days, 1 week and 1 month.
+- the [Historical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical) which triggers an Application Specific Message of the last 5 mentions of a Topic, Tracker, Entity, etc
+- the [Statistical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical) which provides the number of times a topic, Tracker, Entity, etc has been mentioned in the past 30 mins, 1 hour, 4 hours, 1 day, 2 days, 1 week and 1 month.
 
 ### How Do I Launch These Plugins
 
@@ -49,19 +49,19 @@ foo@bar:~$ cd ./cmd/symbl-proxy-dataminer
 foo@bar:~$ go run cmd.go
 ```
 
-Start the [Historical Insights Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical-insights) and the [Statistical Insights Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical-insights)  each in their own console window.
+Start the [Historical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical) and the [Statistical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical)  each in their own console window.
 
-In a second console windows, run the `historical-insights` plugin by executing:
+In a second console windows, run the `historical` plugin by executing:
 ```bash
 foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-conversation-plugins
-foo@bar:~$ cd ./plugins/historical-insights
+foo@bar:~$ cd ./plugins/historical
 foo@bar:~$ go run cmd.go
 ```
 
-In a third console windows, run the `statistical-insights` plugin by executing:
+In a third console windows, run the `statistical` plugin by executing:
 ```bash
 foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-conversation-plugins
-foo@bar:~$ cd ./plugins/statistical-insights
+foo@bar:~$ cd ./plugins/statistical
 foo@bar:~$ go run cmd.go
 ```
 
