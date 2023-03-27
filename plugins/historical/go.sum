@@ -4,6 +4,8 @@ github.com/dvonthenen/enterprise-reference-implementation v0.1.6 h1:SOtIT1mvkpEa
 github.com/dvonthenen/enterprise-reference-implementation v0.1.6/go.mod h1:LPV5U8qQBVBkuU3bGpz6ARtmihBOl8d5DkjT788rEBg=
 github.com/dvonthenen/enterprise-reference-implementation v0.1.7 h1:7CRFAd7w6sfivEBUwspc/njJYOW4mvygDVow1+Z8wj8=
 github.com/dvonthenen/enterprise-reference-implementation v0.1.7/go.mod h1:jV8krM60THqSg3elEo4rYBtXRYV1GM8RP12N6cvWXDg=
+github.com/dvonthenen/enterprise-reference-implementation v0.1.8 h1:7bn/zAxi9nqft3eV4h6m4ZibUZk7Wx42E33v+fIuyBc=
+github.com/dvonthenen/enterprise-reference-implementation v0.1.8/go.mod h1:tqWQfNAkYaAvw7ba66Dx5lX2T59hY1H16el1/RQuvrs=
 github.com/dvonthenen/rabbitmq-manager v0.1.1 h1:I0Sl2DA2rgZBPqzXG+/yD5+/oadKf0xjahDdwo71HEY=
 github.com/dvonthenen/rabbitmq-manager v0.1.1/go.mod h1:6gbBj4toScVEa0drbEU+7yajmCXMfqfEwMsaXQ0vWvk=
 github.com/dvonthenen/sse/v2 v2.0.0-20221222171132-1daa5f8b774c h1:eu91E8j21DyoIXJyC9dNC5hSK2yrkmPzvh0t6zwQts0=
@@ -12,6 +14,8 @@ github.com/dvonthenen/symbl-go-sdk v0.1.5 h1:TrNPVA+j1Ptlh9Dm5/4Z2ne/2/51FEi+hI3
 github.com/dvonthenen/symbl-go-sdk v0.1.5/go.mod h1:6f4ZvbSzZiqv7CluCimR2Sf+A9xFUSWLNqyrVTu42QA=
 github.com/dvonthenen/symbl-go-sdk v0.1.6 h1:KuAp0qviOkVMmKjlOUii6lMKbCsu/iWJCBtZf5FRYIk=
 github.com/dvonthenen/symbl-go-sdk v0.1.6/go.mod h1:6f4ZvbSzZiqv7CluCimR2Sf+A9xFUSWLNqyrVTu42QA=
+github.com/dvonthenen/symbl-go-sdk v0.1.7 h1:d5o8HMcveaPGgZYaiWnPuEAUZl+BlqznozIWq5vxQlI=
+github.com/dvonthenen/symbl-go-sdk v0.1.7/go.mod h1:qcFnGYrIQlrYhb2mGFlUW0XlawzaTZbWpeXqDpB6pvo=
 github.com/dvonthenen/websocket v1.5.1-dyv.2 h1:OXlWJJkeHt8k4+MEI0Y8SQjY2ihHYD2z/tI7sZZfsnA=
 github.com/dvonthenen/websocket v1.5.1-dyv.2/go.mod h1:q2GbopbpFJvBP4iqVvqwwahVmvu2HnCfdqCWDoQVKMM=
 github.com/dvonthenen/websocketproxy v0.1.0-dyv.4 h1:+osPTDrTmv+2sgo/dhcRLod+I6olG5bs8kdJfmSTazQ=
@@ -63,6 +67,8 @@ golang.org/x/net v0.0.0-20190620200207-3b0461eec859/go.mod h1:z5CRVTTTmAJ677TzLL
 golang.org/x/net v0.0.0-20191116160921-f9c825593386/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=
 golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 h1:4nGaVu0QrbjT/AK2PRLuQfQuh6DJve+pELhqTdAj3x0=
 golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4/go.mod h1:p54w0d4576C0XHj96bSt6lcn1PtDYWL6XObtHCRCNQM=
+golang.org/x/net v0.8.0 h1:Zrh2ngAOFYneWTAIAPethzeaQLuHwhuBkuV6ZiRnUaQ=
+golang.org/x/net v0.8.0/go.mod h1:QVkue5JL9kW//ek3r6jTKnTFis1tRmNAW2P1shuFdJc=
 golang.org/x/sync v0.0.0-20190423024810-112230192c58/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.0.0-20210220032951-036812b2e83c/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
@@ -74,6 +80,8 @@ golang.org/x/sys v0.0.0-20210330210617-4fbd30eecc44/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20210510120138-977fb7262007/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c h1:F1jZWGFhYfh0Ci55sIpILtKKK8p3i2/krTr0H1rg74I=
 golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.6.0 h1:MVltZSvRTcU2ljQOhs94SXPftV6DCNnZViHeQps87pQ=
+golang.org/x/sys v0.6.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.3/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
