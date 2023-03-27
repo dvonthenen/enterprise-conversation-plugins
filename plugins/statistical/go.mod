@@ -3,8 +3,8 @@ module github.com/dvonthenen/enterprise-conversation-plugins/plugins/statistical
 go 1.18
 
 require (
-	github.com/dvonthenen/enterprise-reference-implementation v0.1.7
-	github.com/dvonthenen/symbl-go-sdk v0.1.6
+	github.com/dvonthenen/enterprise-reference-implementation v0.1.8
+	github.com/dvonthenen/symbl-go-sdk v0.1.7
 	github.com/neo4j/neo4j-go-driver/v5 v5.3.0
 	k8s.io/klog/v2 v2.90.0
 )
@@ -25,8 +25,8 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/r3labs/sse/v2 v2.9.0 // indirect
 	github.com/rabbitmq/amqp091-go v1.5.0 // indirect
-	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	golang.org/x/net v0.8.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
 	gopkg.in/cenkalti/backoff.v1 v1.1.0 // indirect
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
 )
