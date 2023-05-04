@@ -1,0 +1,29 @@
+{
+    "webhookURI": "https://127.0.0.1:17000/v1/webhook",
+    "webhookPassword": "DELETE-THIS-AND-USE-ENV-VAR-INSTEAD",
+    "skipServerAuth": true,
+    "questionMatch": [
+        "value1",
+        "value2"
+    ],
+    "followUpMatch": [
+        "value1",
+        "value2"
+    ],
+    "actionItemMatch": [
+        "value1",
+        "value2"
+    ],
+    "topicMatch": [
+        "value1",
+        "value2"
+    ],
+    "trackerMatch": [
+        "value1",
+        "value2"
+    ],
+    "entityMatch": [
+        "value1",
+        "value2"
+    ]
+}
