@@ -1,4 +1,4 @@
-module github.com/dvonthenen/enterprise-conversation-plugins/clients/realtime/historical-client
+module github.com/dvonthenen/enterprise-conversation-plugins/clients/realtime/historical
 
 go 1.18
 
