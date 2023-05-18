@@ -9,7 +9,7 @@ import (
 	"os"
 	"os/signal"
 
-	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk"
+	middlewaresdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk"
 
 	server "github.com/dvonthenen/enterprise-conversation-plugins/plugins/realtime/statistical/server"
 )

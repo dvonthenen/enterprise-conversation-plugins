@@ -32,7 +32,7 @@ type Data struct {
 }
 
 /*
-	Please see github.com/dvonthenen/enterprise-reference-implementation/pkg/interfaces
+	Please see github.com/dvonthenen/enterprise-conversation-application/pkg/interfaces
 	for required definition of this common part of the struct
 */
 type Metadata struct {

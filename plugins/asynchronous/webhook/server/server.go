@@ -6,8 +6,8 @@ package server
 import (
 	"os"
 
-	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk"
-	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
+	middlewaresdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk"
+	interfacessdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk/interfaces"
 	klog "k8s.io/klog/v2"
 
 	handlers "github.com/dvonthenen/enterprise-conversation-plugins/plugins/asynchronous/webhook/handlers"

@@ -4,8 +4,8 @@
 package handlers
 
 import (
-	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
-	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
+	interfacessdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk/interfaces"
+	utils "github.com/dvonthenen/enterprise-conversation-application/pkg/utils"
 	symbl "github.com/dvonthenen/symbl-go-sdk/pkg/client"
 	neo4j "github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )

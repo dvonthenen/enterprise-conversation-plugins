@@ -3,7 +3,7 @@ module github.com/dvonthenen/enterprise-conversation-plugins/plugins/realtime/st
 go 1.18
 
 require (
-	github.com/dvonthenen/enterprise-reference-implementation v0.1.9
+	github.com/dvonthenen/enterprise-conversation-application v0.1.10-0.20230518174922-57dadf2e5068
 	github.com/dvonthenen/symbl-go-sdk v0.1.8
 	github.com/neo4j/neo4j-go-driver/v5 v5.3.0
 	k8s.io/klog/v2 v2.90.0
@@ -25,11 +25,3 @@ require (
 	golang.org/x/sys v0.6.0 // indirect
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
 )
-
-replace github.com/r3labs/sse/v2 => github.com/dvonthenen/sse/v2 v2.0.0-20221222171132-1daa5f8b774c
-
-// replace github.com/dvonthenen/enterprise-reference-implementation => ../../../../../dvonthenen/enterprise-reference-implementation
-// replace github.com/dvonthenen/symbl-go-sdk => ../../../../../dvonthenen/symbl-go-sdk
-// replace github.com/dvonthenen/websocket => ../../../../../dvonthenen/websocket
-// replace github.com/dvonthenen/websocketproxy => ../../../../../dvonthenen/websocketproxy
-// replace github.com/dvonthenen/sse => ../../r3labs/sse

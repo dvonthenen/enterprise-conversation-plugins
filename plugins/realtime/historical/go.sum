@@ -1,7 +1,7 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/dvonthenen/enterprise-reference-implementation v0.1.9 h1:Eh0ZkuBrGrJ+uEClMwOyWl8c8MQZ4COx8lXTVbC6Mr0=
-github.com/dvonthenen/enterprise-reference-implementation v0.1.9/go.mod h1:/aDD1r9rsR1ezZQFnRCRCc1Luc9Vg4AqgeLAgmocr+Q=
+github.com/dvonthenen/enterprise-conversation-application v0.1.10-0.20230518174922-57dadf2e5068 h1:wSlhEaI15E9a1u5MRPb4x6snypmdZpc9tfeQ+nGrlMg=
+github.com/dvonthenen/enterprise-conversation-application v0.1.10-0.20230518174922-57dadf2e5068/go.mod h1:qRkMHJA6zG8yhyWl3Z3B1cHozRyhofJqeg8wmOx04A0=
 github.com/dvonthenen/rabbitmq-manager v0.1.1 h1:I0Sl2DA2rgZBPqzXG+/yD5+/oadKf0xjahDdwo71HEY=
 github.com/dvonthenen/rabbitmq-manager v0.1.1/go.mod h1:6gbBj4toScVEa0drbEU+7yajmCXMfqfEwMsaXQ0vWvk=
 github.com/dvonthenen/symbl-go-sdk v0.1.8 h1:qJxawC0hp5nbQm/CtybIpGS4gJqcTqGethEqFZF7UJw=

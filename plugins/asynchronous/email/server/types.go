@@ -4,7 +4,7 @@
 package server
 
 import (
-	middlewaresdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk"
+	middlewaresdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk"
 )
 
 // ServerOptions for the main HTTP endpoint

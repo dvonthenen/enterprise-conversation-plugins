@@ -6,8 +6,8 @@ package handlers
 import (
 	"text/template"
 
-	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
-	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
+	interfacessdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk/interfaces"
+	utils "github.com/dvonthenen/enterprise-conversation-application/pkg/utils"
 	sdkinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/async/v1/interfaces"
 )
 
