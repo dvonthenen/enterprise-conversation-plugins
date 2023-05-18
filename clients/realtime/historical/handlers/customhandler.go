@@ -1,7 +1,7 @@
 // Copyright 2023 Enterprise Conversation Plugins contributors. All Rights Reserved.
 // SPDX-License-Identifier: Apache License 2.0
 
-package handler
+package handlers
 
 import (
 	"encoding/json"
