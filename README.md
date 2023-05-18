@@ -2,12 +2,12 @@
 
 The goal of this repository is to provide both:
 
-- an "App Store"-like experience to enabling and extending functionality for your [Symbl.ai Enterprise Application](https://github.com/dvonthenen/enterprise-reference-implementation)
+- an "App Store"-like experience to enabling and extending functionality for your [Symbl.ai Enterprise Application](https://github.com/dvonthenen/enterprise-conversation-application)
 - a place for community members to share and contribute their general purpose conversation plugins, workflows, ideas, etc
 
 ## Brief Recap: Symbl.ai Enterprise Application
 
-If you aren't familiar with the [Symbl.ai Enterprise Application](https://github.com/dvonthenen/enterprise-reference-implementation), you can find more information about this Architecture in the repo found here: [https://github.com/dvonthenen/enterprise-reference-implementation](https://github.com/dvonthenen/enterprise-reference-implementation).
+If you aren't familiar with the [Symbl.ai Enterprise Application](https://github.com/dvonthenen/enterprise-conversation-application), you can find more information about this Architecture in the repo found here: [https://github.com/dvonthenen/enterprise-conversation-application](https://github.com/dvonthenen/enterprise-conversation-application).
 
 In short, this Enterprise Application Architecture provides a reusable, off-the-shelf implementation for Conversation Analytics that provides the following benfits:
 
@@ -22,7 +22,7 @@ In short, this Enterprise Application Architecture provides a reusable, off-the-
 
 This is a high-level block diagram for what the architecture looks like...
 
-![Enterprise Reference Architecture](https://github.com/dvonthenen/enterprise-reference-implementation/blob/main/docs/images/enterprise-architecture.png?raw=true)
+![Enterprise Conversation Architecture](https://github.com/dvonthenen/enterprise-conversation-application/blob/main/docs/images/enterprise-architecture.png?raw=true)
 
 ## Conversation Plugins Available
 
@@ -38,13 +38,13 @@ This is a high-level block diagram for what the architecture looks like...
 
 ### How Do I Launch These Plugins
 
-Please visit the [Enterprise Reference Implementation](https://github.com/dvonthenen/enterprise-reference-implementation) repo for more information. There are 3 main configurations for the implementation contained in that repo and you can find those configurations below.
+Please visit the [Enterprise Conversation Application](https://github.com/dvonthenen/enterprise-conversation-application) repo for more information. There are 3 main configurations for the implementation contained in that repo and you can find those configurations below.
 
 **Realtime Conversation Processing**
-To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/realtime-setup.md](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/realtime-setup.md).
+To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-conversation-application/tree/main/docs/realtime-setup.md](https://github.com/dvonthenen/enterprise-conversation-application/tree/main/docs/realtime-setup.md).
 
 **Asynchronous Conversation Processing**
-To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/asynchronous-setup.md](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/asynchronous-setup.md).
+To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-conversation-application/tree/main/docs/asynchronous-setup.md](https://github.com/dvonthenen/enterprise-conversation-application/tree/main/docs/asynchronous-setup.md).
 
 **Realtime and Asynchronous Conversation Process**
 To deploy this configuration, follow each setup guide above. The setup is independent of each other and the only share components between these two configurations are the [Neo4J](https://neo4j.com/) Database and [RabbitMQ](https://rabbitmq.com/) Server.

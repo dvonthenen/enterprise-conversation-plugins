@@ -16,9 +16,9 @@ import (
 	gomail "gopkg.in/mail.v2"
 	klog "k8s.io/klog/v2"
 
-	interfacessdk "github.com/dvonthenen/enterprise-reference-implementation/pkg/middleware-plugin-sdk/interfaces"
-	shared "github.com/dvonthenen/enterprise-reference-implementation/pkg/shared"
-	utils "github.com/dvonthenen/enterprise-reference-implementation/pkg/utils"
+	interfacessdk "github.com/dvonthenen/enterprise-conversation-application/pkg/middleware-plugin-sdk/interfaces"
+	shared "github.com/dvonthenen/enterprise-conversation-application/pkg/shared"
+	utils "github.com/dvonthenen/enterprise-conversation-application/pkg/utils"
 )
 
 func NewHandler(options HandlerOptions) *Handler {

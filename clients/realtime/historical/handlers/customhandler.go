@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	interfaces "github.com/dvonthenen/enterprise-reference-implementation/pkg/interfaces"
+	interfaces "github.com/dvonthenen/enterprise-conversation-application/pkg/interfaces"
 	sdkinterfaces "github.com/dvonthenen/symbl-go-sdk/pkg/api/streaming/v1/interfaces"
 	prettyjson "github.com/hokaccha/go-prettyjson"
 	klog "k8s.io/klog/v2"
