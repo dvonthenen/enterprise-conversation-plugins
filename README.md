@@ -26,56 +26,28 @@ This is a high-level block diagram for what the architecture looks like...
 
 ## Conversation Plugins Available
 
-Middleware Plugins Available:
+**Realtime Middleware Plugins Available:**
 
-- the [Historical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical) which triggers an Application Specific Message of the last 5 mentions of a Topic, Tracker, Entity, etc
-- the [Statistical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical) which provides the number of times a topic, Tracker, Entity, etc has been mentioned in the past 30 mins, 1 hour, 4 hours, 1 day, 2 days, 1 week and 1 month.
+- the [Historical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/realtime/historical) which triggers an Application Specific Message of the last 5 mentions of a Topic, Tracker, Entity, etc
+- the [Statistical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/realtime/statistical) which provides the number of times a topic, Tracker, Entity, etc has been mentioned in the past 30 mins, 1 hour, 4 hours, 1 day, 2 days, 1 week and 1 month.
+
+**Asynchronous Middleware Plugins Available:**
+
+- the [Email Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/asynchronous/email) sends an email when a configured Topic, Tracker or Entity is encountered
+- the [Webhook Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/asynchronous/webhook) sends a JSON of the entire conversation to a specified URI when a configured Topic, Tracker or Entity is encountered
 
 ### How Do I Launch These Plugins
 
-To try these plugins out, make sure the [Prerequisite Components](https://github.com/dvonthenen/enterprise-reference-implementation#prerequisite-components) are running before proceeding! Assuming you have already cloned the [Enterprise Reference Implementation](https://github.com/dvonthenen/enterprise-reference-implementation), clone the [Enterprise Conversation Plugins](hhttps://github.com/dvonthenen/enterprise-conversation-plugins) repo to your local laptop.
+Please visit the [Enterprise Reference Implementation](https://github.com/dvonthenen/enterprise-reference-implementation) repo for more information. There are 3 main configurations for the implementation contained in that repo and you can find those configurations below.
 
-```bash
-foo@bar:~$ git clone git@github.com:dvonthenen/enterprise-conversation-plugins.git
-foo@bar:~$ cd enterprise-reference-implementation
-```
+**Realtime Conversation Processing**
+To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/realtime-setup.md](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/realtime-setup.md).
 
-Start the [Symbl Proxy/Dataminer](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/cmd/symbl-proxy-dataminer) in the console by running the following commands:
+**Asynchronous Conversation Processing**
+To deploy this configuration, follow this setup guide: [https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/asynchronous-setup.md](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/docs/asynchronous-setup.md).
 
-In your first console windows, run:
-```bash
-foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-reference-implementation
-foo@bar:~$ cd ./cmd/symbl-proxy-dataminer
-foo@bar:~$ go run cmd.go
-```
-
-Start the [Historical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/historical) and the [Statistical Plugin](https://github.com/dvonthenen/enterprise-conversation-plugins/tree/main/plugins/statistical)  each in their own console window.
-
-In a second console windows, run the `historical` plugin by executing:
-```bash
-foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-conversation-plugins
-foo@bar:~$ cd ./plugins/historical
-foo@bar:~$ go run cmd.go
-```
-
-In a third console windows, run the `statistical` plugin by executing:
-```bash
-foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-conversation-plugins
-foo@bar:~$ cd ./plugins/statistical
-foo@bar:~$ go run cmd.go
-```
-
-> **_NOTE:_** If you want to run additional plugins, you would just open a new terminal windows, change directory into the plugin folder, and run the plugin.
-
-Finally, create a fourth console window to start the [Example Simulated Client App](https://github.com/dvonthenen/enterprise-reference-implementation/tree/main/cmd/example-simulated-client-app) by running the following commands:
-
-```bash
-foo@bar:~$ cd ${REPLACE WITH YOUR ROOT DIR}/enterprise-reference-implementation
-foo@bar:~$ cd ./cmd/example-simulated-client-app
-foo@bar:~$ go run cmd.go
-```
-
-Then start talking into the microphone. Since both of these plugins are about aggregating conversations over time, close the `example-simulated-client-app` instance after having mentioned some topics, entities, trackers, etc. Then start up another instance of the `example-simulated-client-app` (which can be done in the same console window) and mention the same topics, entities, trackers, etc as in the previous conversation session. You should start to see some historical and statistical data flowing through to the client when those past insights are triggered.
+**Realtime and Asynchronous Conversation Process**
+To deploy this configuration, follow each setup guide above. The setup is independent of each other and the only share components between these two configurations are the [Neo4J](https://neo4j.com/) Database and [RabbitMQ](https://rabbitmq.com/) Server.
 
 ## Contact Information
 
@@ -83,11 +55,14 @@ You can reach out to the Community via:
 
 - [Google Group][google_group] for this Community Meeting and Office Hours
 - Find us by using the [Community Calendar][google_calendar]
-- Taking a look at the [Community Meeting and Office Hours Agenda Notes][agenda_doc]. Feel free to add any agenda items!
+- Taking a look at the [Community Meeting][community_meeting]. Feel free to add any topics to [agenda doc][agenda_doc]!
+- Bring all questions to the [Office Hours][office_hours].
 - Don't want to wait? Contact us through our [Community Slack][slack]
-- If you want to do it the old fashion way, our email is community\[at\]symbl\[dot\]ai
+- If you want to do it the old fashion way, our email is symblai-community-meeting\[at\]symbl\[dot\]ai
 
 [google_group]: https://bit.ly/3Cp5c9D
 [google_calendar]: https://bit.ly/3jRGEj4
 [agenda_doc]: https://bit.ly/3WH4hcO
+[community_meeting]: bit.ly/3M13vDg
+[office_hours]: bit.ly/3LTbELg
 [slack]: https://join.slack.com/t/symbldotai/shared_invite/zt-4sic2s11-D3x496pll8UHSJ89cm78CA

@@ -1,0 +1,36 @@
+{
+    "template": "template.html",
+    "skipServerAuth": true,
+    "emailTo": "emailTo",
+    "emailFrom": "emailFrom",
+    "emailSubject": "emailSubject",
+    "emailSmtpAddr": "emailSmtpAddr",
+    "emailPort": "emailPort",
+    "emailSmtpUsername": "emailSmtpUsername",
+    "emailSmtpPassword": "emailSmtpPassword",
+    "emailSmtpPassword": "DELETE-THIS-AND-USE-ENV-VAR-INSTEAD",
+    "questionMatch": [
+        "value1",
+        "value2"
+    ],
+    "followUpMatch": [
+        "value1",
+        "value2"
+    ],
+    "actionItemMatch": [
+        "value1",
+        "value2"
+    ],
+    "topicMatch": [
+        "value1",
+        "value2"
+    ],
+    "trackerMatch": [
+        "value1",
+        "value2"
+    ],
+    "entityMatch": [
+        "value1",
+        "value2"
+    ]
+}
