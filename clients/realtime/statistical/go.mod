@@ -3,7 +3,7 @@ module github.com/dvonthenen/enterprise-conversation-plugins/clients/realtime/st
 go 1.18
 
 require (
-	github.com/dvonthenen/enterprise-conversation-application v0.1.10-0.20230518174922-57dadf2e5068
+	github.com/dvonthenen/enterprise-conversation-application v0.1.10
 	github.com/dvonthenen/symbl-go-sdk v0.1.8
 	github.com/hokaccha/go-prettyjson v0.0.0-20211117102719-0474bc63780f
 	k8s.io/klog/v2 v2.90.0
