@@ -174,7 +174,7 @@ func main() {
 	server, err := New(SampleServerOptions{
 		CrtFile:         "localhost.crt",
 		KeyFile:         "localhost.key",
-		WebhookPassword: "MyPassword",
+		WebhookPassword: "MyPassword", // TODO: this should come from env
 	})
 	if err != nil {
 		klog.V(1).Infof("New failed. Err: %v\n", err)
